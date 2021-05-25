@@ -1,0 +1,50 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<body v-bind:style="{  backgroundColor: #67159C }">
+  <div :style="myStyle" v-on:mousemove="atualizarXY" id="app">
+    <p>{{ contador }}</p>
+    <button v-on:click='somar(2, $event)'>Somar 1</button>
+    <p>
+      Mouse: {{ x }} e {{ y }}
+      <br>
+      <span v-on:mousemove.stop>PARAR AQUI Modificador de acesso!</span>
+    </p>
+    <a v-on:click="naoNavegar" href="http://google.com.br">Google</a>
+    <hr>
+    <input type="text" v-on:keyup.enter="exibirAlerta">
+  </div>
+</body>
+
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      contador: 0,
+      x: 0,
+      y: 0,
+      myStyle: {
+        backgroundColor: "#67159C",
+        'font-size': '35px',
+      }
+    },
+    methods: {
+      somar(passo, event) {
+        console.log(passo, event);
+        this.contador += passo
+      },
+      atualizarXY(e) {
+        this.x = e.clientX
+        this.y = e.clientY
+      },
+      parar(e) {
+        e.stopPropagation();
+      },
+      naoNavegar(e) {
+        e.preventDefault();
+      },
+      exibirAlerta() {
+        alert('Estou te alertando')
+      }
+    },
+  });
+</script>
