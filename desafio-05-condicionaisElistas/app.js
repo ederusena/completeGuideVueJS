@@ -2,7 +2,7 @@ new Vue({
 	el: '#desafio',
 	data: {
 		trocar: false,
-		array: ['Pedro', 'Bia', 'Ana', 'Rebeca'],
+		nomes: ['Pedro', 'Bia', 'Ana', 'Rebeca'],
 		livro: {
 			titulo: 'O Senhor dos Anéis',
 			autor: 'J.R.R. Tolkiens',
