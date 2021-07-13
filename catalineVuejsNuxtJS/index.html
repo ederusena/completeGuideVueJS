@@ -1,7 +1,12 @@
 <div id="app">
+  <h2>Total de produtos: {{ totalProducts }}</h2>
   <ul>
     <li v-for="product in products">
-      {{ product }}
+      <input type="number" v-model.number="product.quantity" />
+      {{ product.name }}
+      <span v-if="product.quantity === 0"> - FORA DE ESTOQUE</span>
+      <button @click="product.quantity++">Add</button>
+      <button @click="product.quantity--">Remove</button>
     </li>
   </ul>
 </div>
@@ -11,11 +16,16 @@
   const app = Vue.createApp({
     data() {
       return {
-        products: ['Camisa', 'Jaqueta', 'Calça']
+        products: []
+      }
+    },
+    computed: {
+      totalProducts() {
+        return this.products.reduce((soma, produtos) => soma + produtos.quantity, 0)
       }
     },
     created() {
-      fetch('http://localhost:3333/products')
+      fetch('http://localhost:3000/products')
         .then(response => response.json())
         .then(json => (this.products = json))
     },
@@ -23,3 +33,9 @@
 
   const mountedApp = app.mount('#app')
 </script>
+
+<style>
+  button {
+    margin: 5px;
+  }
+</style>

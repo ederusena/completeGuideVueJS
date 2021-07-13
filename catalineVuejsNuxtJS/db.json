@@ -1,0 +1,8 @@
+{
+  "products": [
+    {"id": 1, "quantity": 1, "name": "Camisa"},
+    {"id": 2, "quantity": 0, "name": "Jaqueta"},
+    {"id": 3, "quantity": 7, "name": "Calça"},
+    {"id": 4, "quantity": 3, "name": "Sapata"}
+  ]
+}
