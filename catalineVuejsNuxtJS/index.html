@@ -1,0 +1,25 @@
+<div id="app">
+  <ul>
+    <li v-for="product in products">
+      {{ product }}
+    </li>
+  </ul>
+</div>
+
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        products: ['Camisa', 'Jaqueta', 'Calça']
+      }
+    },
+    created() {
+      fetch('http://localhost:3333/products')
+        .then(response => response.json())
+        .then(json => (this.products = json))
+    },
+  })
+
+  const mountedApp = app.mount('#app')
+</script>
